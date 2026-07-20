@@ -75,7 +75,7 @@ window.MyTasksView = ({ user, workspaces, onOpenTask, onBack, theme, onThemeChan
     const urgencyDot = (urgency) => ({ low: 'bg-blue-300', med: 'bg-yellow-400', high: 'bg-red-500' }[(urgency || 'low').toLowerCase()] || 'bg-blue-300');
 
     return (
-        <div className="min-h-screen bg-white animate-fade-in flex flex-col text-black">
+        <div className="h-screen bg-white animate-fade-in flex flex-col text-black overflow-hidden">
             <nav className={`h-16 px-6 lg:px-12 flex items-center justify-between transition-colors duration-500 shadow-sm ${headerClass}`}>
                 <div className="flex items-center gap-6">
                     <button onClick={onBack} className={`p-2.5 hover:bg-black/5 rounded-xl transition ${isDarkHeader ? 'text-white' : 'text-black'}`}><window.Icon name="arrow-left" size={20} /></button>
@@ -87,7 +87,8 @@ window.MyTasksView = ({ user, workspaces, onOpenTask, onBack, theme, onThemeChan
                 {window.ProfileMenu && <window.ProfileMenu user={user} onLogout={onLogout} onThemeChange={onThemeChange} currentTheme={theme} onUpdateUser={onUpdateUser} />}
             </nav>
 
-            <div className="max-w-6xl w-full mx-auto p-4 md:p-10 flex-1">
+            <div className="flex-1 overflow-y-auto">
+            <div className="max-w-6xl w-full mx-auto p-4 md:p-10">
                 <header className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                     <div>
                         <h2 className="text-3xl md:text-5xl font-black tracking-tighter">{t('labels.my_tasks') || 'My Tasks'}</h2>
@@ -174,6 +175,7 @@ window.MyTasksView = ({ user, workspaces, onOpenTask, onBack, theme, onThemeChan
                         ))}
                     </div>
                 )}
+            </div>
             </div>
         </div>
     );
